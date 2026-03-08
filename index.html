@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Résid'Or Abidjan – Location de résidences meublées premium à Abidjan. Cocody, Marcory, Plateau et plus."/>
+<meta name="theme-color" content="#0b1d35"/>
+<title>Résid'Or – Résidences Premium à Abidjan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+   RÉSID'OR – style.css
+   Agence Immobilière Premium Abidjan
+   MOBILE-FIRST – optimisé 320px → desktop
+   ============================================================ */
+
+/* ─── 1. VARIABLES ─── */
+:root {
+  --navy:       #0b1d35;
+  --navy-mid:   #112847;
+  --navy-light: #1a3a5c;
+  --gold:       #c8a050;
+  --gold-light: #deb96a;
+  --gold-dark:  #a07830;
+  --cream:      #f7f3ed;
+  --cream-mid:  #ede7dc;
+  --white:      #ffffff;
+  --text:       #1e2a3a;
+  --text-mid:   #4a5568;
+  --text-light: #8898aa;
+  --green-wa:   #25d366;
+  --green-wa-d: #1da851;
+  --shadow-sm:  0 2px 12px rgba(11,29,53,.08);
+  --shadow-md:  0 6px 30px rgba(11,29,53,.14);
+  --shadow-lg:  0 16px 60px rgba(11,29,53,.20);
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --transition: .3s cubic-bezier(.4,0,.2,1);
+  --header-h:   60px;
+}
+
+/* ─── 2. RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 15px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: 'Jost', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a   { text-decoration: none; color: inherit; -webkit-tap-highlight-color: transparent; }
+ul  { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; -webkit-tap-highlight-color: transparent; }
+input, textarea, button { touch-action: manipulation; }
+
+/* ─── 3. UTILITIES ─── */
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+.section { padding: 3.5rem 0; }
+
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal--delay-1 { transition-delay: .08s; }
+.reveal--delay-2 { transition-delay: .16s; }
+.reveal--delay-3 { transition-delay: .24s; }
+.reveal--delay-4 { transition-delay: .32s; }
+
+/* ─── 4. BOUTONS ─── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: .45rem; padding: .8rem 1.35rem;
+  border-radius: 50px;
+  font-family: 'Jost', sans-serif; font-weight: 600; font-size: .88rem;
+  letter-spacing: .03em; transition: var(--transition);
+  white-space: nowrap; position: relative; overflow: hidden;
+  min-height: 44px; min-width: 44px;
+  -webkit-appearance: none;
+}
+.btn::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,.12); opacity: 0; transition: opacity .2s; }
+.btn:active { transform: scale(.96); }
+.btn:active::after { opacity: 1; }
+
+.btn--gold { background: linear-gradient(135deg,var(--gold),var(--gold-light)); color: var(--navy); box-shadow: 0 4px 18px rgba(200,160,80,.3); }
+.btn--outline { background: transparent; border: 2px solid rgba(255,255,255,.5); color: var(--white); }
+.btn--whatsapp { background: linear-gradient(135deg,var(--green-wa),var(--green-wa-d)); color: var(--white); box-shadow: 0 4px 16px rgba(37,211,102,.25); }
+.btn--ghost { background: transparent; border: 1.5px solid var(--cream-mid); color: var(--text); }
+.btn--white { background: var(--white); color: var(--navy); font-weight: 700; }
+.btn--sm { padding: .52rem .95rem; font-size: .77rem; min-height: 38px; }
+.btn--full { width: 100%; justify-content: center; }
+
+.btn-loader { display: none; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: spin .6s linear infinite; position: absolute; }
+.btn.loading .btn-text { opacity: 0; }
+.btn.loading .btn-loader { display: block; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─── 5. SECTION HEADERS ─── */
+.section__head { text-align: center; max-width: 560px; margin: 0 auto 2rem; padding: 0 .25rem; }
+.section__eyebrow { font-size: .71rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin-bottom: .45rem; }
+.section__title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.65rem, 6vw, 2.8rem); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: .75rem; }
+.section__title em { font-style: italic; color: var(--gold); }
+.section__sub { color: var(--text-mid); font-size: .86rem; line-height: 1.7; }
+.section__cta { text-align: center; margin-top: 2rem; }
+
+/* ─── 6. HEADER ─── */
+.header {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 1000; height: var(--header-h);
+  background: rgba(11,29,53,.25);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  transition: background .3s ease, box-shadow .3s ease;
+}
+.header.scrolled { background: rgba(11,29,53,.97); box-shadow: 0 2px 16px rgba(0,0,0,.22); }
+.header__inner { max-width: 1200px; margin: 0 auto; padding: 0 1rem; height: 100%; display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+
+.logo { display: flex; align-items: center; gap: .35rem; color: var(--white); font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 700; flex-shrink: 0; }
+.logo__icon { color: var(--gold); font-size: 1.1rem; }
+.logo__accent { color: var(--gold); }
+
+.nav { display: none; }
+.nav__list { display: flex; gap: 1.75rem; }
+.nav__link { color: rgba(255,255,255,.8); font-size: .85rem; font-weight: 500; letter-spacing: .04em; position: relative; transition: color var(--transition); }
+.nav__link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--gold); transition: width var(--transition); border-radius: 2px; }
+.nav__link:hover, .nav__link.active { color: var(--white); }
+.nav__link:hover::after, .nav__link.active::after { width: 100%; }
+
+.header__actions { display: flex; align-items: center; gap: .55rem; }
+.header__wa-text { display: none; }
+
+.burger { display: flex; flex-direction: column; gap: 5px; padding: .5rem; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+.burger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
+.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ─── 7. NAV OVERLAY MOBILE ─── */
+.nav-overlay {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(11,29,53,.98);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .32s ease;
+}
+.nav-overlay.open { opacity: 1; pointer-events: auto; }
+.nav-overlay .nav__list { flex-direction: column; align-items: center; gap: 0; width: 100%; }
+.nav-overlay .nav__link {
+  display: block; font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.6rem, 8vw, 2.2rem); font-weight: 700; color: var(--white);
+  padding: .85rem 2rem; text-align: center; width: 100%;
+  opacity: 0; transform: translateY(14px);
+  transition: opacity .28s ease, transform .28s ease, color .2s;
+}
+.nav-overlay.open .nav__link { opacity: 1; transform: none; }
+.nav-overlay.open .nav__link:nth-child(1) { transition-delay: .04s; }
+.nav-overlay.open .nav__link:nth-child(2) { transition-delay: .09s; }
+.nav-overlay.open .nav__link:nth-child(3) { transition-delay: .14s; }
+.nav-overlay.open .nav__link:nth-child(4) { transition-delay: .19s; }
+.nav-overlay.open .nav__link:nth-child(5) { transition-delay: .24s; }
+.nav-overlay .nav__link::after { display: none; }
+.nav-overlay .nav__link:active { color: var(--gold-light); }
+.nav-overlay__line { width: 40px; height: 1px; background: rgba(200,160,80,.25); margin: .75rem auto; opacity: 0; transition: opacity .3s ease .28s; }
+.nav-overlay.open .nav-overlay__line { opacity: 1; }
+.nav-overlay__wa { opacity: 0; transform: translateY(14px); transition: opacity .3s ease .3s, transform .3s ease .3s; }
+.nav-overlay.open .nav-overlay__wa { opacity: 1; transform: none; }
+
+/* ─── 8. HERO ─── */
+.hero {
+  position: relative; min-height: 100svh; min-height: 100vh;
+  display: flex; align-items: center;
+  overflow: hidden; background: var(--navy);
+  padding-top: var(--header-h);
+}
+.hero__bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?w=900&q=80') center/cover no-repeat; }
+.hero__overlay { position: absolute; inset: 0; background: linear-gradient(160deg,rgba(11,29,53,.93) 0%,rgba(11,29,53,.78) 55%,rgba(11,29,53,.58) 100%); }
+.hero__shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.shape { position: absolute; border-radius: 50%; filter: blur(50px); opacity: .14; }
+.shape--1 { width: 280px; height: 280px; background: var(--gold);       top: -70px;  right: -70px; }
+.shape--2 { width: 180px; height: 180px; background: #4a90d9;           bottom: 60px; left: -50px; }
+.shape--3 { width: 130px; height: 130px; background: var(--gold-light); top: 55%; right: 8%; }
+
+.hero__content { position: relative; z-index: 2; padding: 2.5rem 1rem 3.5rem; width: 100%; }
+
+.hero__eyebrow { font-size: .69rem; font-weight: 600; letter-spacing: .17em; text-transform: uppercase; color: var(--gold); margin-bottom: .9rem; display: flex; align-items: center; gap: .55rem; }
+.hero__eyebrow::before { content: ''; display: block; width: 22px; height: 1.5px; background: var(--gold); flex-shrink: 0; }
+
+.hero__title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.1rem, 9vw, 4.5rem); font-weight: 700; line-height: 1.1; color: var(--white); margin-bottom: 1rem; max-width: 700px; }
+.hero__title em { font-style: italic; color: var(--gold-light); }
+
+.hero__sub { color: rgba(255,255,255,.75); font-size: clamp(.84rem, 3.5vw, 1.05rem); max-width: 520px; margin-bottom: 1.75rem; line-height: 1.72; }
+
+.hero__ctas { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 2.25rem; }
+.hero__ctas .btn { width: 100%; justify-content: center; font-size: .9rem; }
+
+.hero__stats { display: flex; align-items: center; gap: 1rem; flex-wrap: nowrap; }
+.stat { display: flex; flex-direction: column; }
+.stat__num { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 700; color: var(--gold-light); line-height: 1; }
+.stat__label { font-size: .63rem; color: rgba(255,255,255,.52); letter-spacing: .06em; text-transform: uppercase; margin-top: .15rem; white-space: nowrap; }
+.stat__sep { width: 1px; height: 30px; background: rgba(255,255,255,.18); flex-shrink: 0; }
+
+.hero__scroll { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); z-index: 2; width: 28px; height: 44px; border: 2px solid rgba(255,255,255,.28); border-radius: 14px; display: flex; align-items: flex-start; justify-content: center; padding-top: 7px; }
+.hero__scroll span { display: block; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; animation: scrollDot 2s infinite; }
+@keyframes scrollDot { 0% { transform: translateY(0); opacity:0; } 30% { opacity:1; } 100% { transform: translateY(14px); opacity:0; } }
+
+/* ─── 9. RÉSIDENCES ─── */
+.residences { background: var(--cream); }
+
+.filter-bar { display: flex; gap: .45rem; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: .2rem; margin-bottom: 1.5rem; }
+.filter-bar::-webkit-scrollbar { display: none; }
+.filter-btn { padding: .48rem 1.05rem; border-radius: 50px; border: 1.5px solid var(--cream-mid); font-size: .76rem; font-weight: 600; color: var(--text-mid); background: var(--white); transition: var(--transition); flex-shrink: 0; scroll-snap-align: start; min-height: 38px; }
+.filter-btn:active { transform: scale(.95); }
+.filter-btn.active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+
+.cards-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+
+.card { background: var(--white); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); transition: transform var(--transition), box-shadow var(--transition); }
+.card.hidden { display: none; }
+.card__img-wrap { position: relative; overflow: hidden; }
+.card__img { height: 195px; background-size: cover; background-position: center; transition: transform .5s ease; }
+.card:active .card__img { transform: scale(1.03); }
+.card__badge { position: absolute; top: .7rem; left: .7rem; background: var(--gold); color: var(--navy); font-size: .64rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; padding: .26rem .65rem; border-radius: 50px; }
+.card__badge--blue { background: var(--navy-light); color: var(--white); }
+.card__overlay { position: absolute; inset: 0; background: rgba(11,29,53,.5); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity var(--transition); pointer-events: none; }
+.card__body { padding: .95rem; }
+.card__location { display: flex; align-items: center; gap: .28rem; font-size: .72rem; color: var(--text-light); margin-bottom: .3rem; }
+.card__location svg { color: var(--gold); flex-shrink: 0; }
+.card__name { font-family: 'Cormorant Garamond', serif; font-size: 1.13rem; font-weight: 700; color: var(--navy); margin-bottom: .3rem; line-height: 1.25; }
+.card__desc { font-size: .8rem; color: var(--text-mid); line-height: 1.55; margin-bottom: .8rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card__footer { display: flex; align-items: center; justify-content: space-between; gap: .5rem; border-top: 1px solid var(--cream-mid); padding-top: .75rem; }
+.card__price { flex: 1; min-width: 0; }
+.price__amount { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 700; color: var(--navy); }
+.price__unit { font-size: .65rem; color: var(--text-light); display: block; line-height: 1.4; }
+.card__btns { display: flex; gap: .38rem; align-items: center; flex-shrink: 0; }
+
+/* ─── 10. SERVICES ─── */
+.services { background: var(--white); }
+.services__grid { display: grid; grid-template-columns: 1fr; gap: .9rem; }
+.service-card { padding: 1.2rem 1rem; border-radius: var(--radius-md); border: 1.5px solid var(--cream-mid); display: flex; gap: .9rem; align-items: flex-start; transition: var(--transition); position: relative; overflow: hidden; }
+.service-card::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg,var(--gold),var(--gold-light)); transform: scaleY(0); transition: transform .35s ease; transform-origin: top; }
+.service-card:active::after { transform: scaleY(1); }
+.service-card__icon { width: 44px; height: 44px; border-radius: var(--radius-sm); background: linear-gradient(135deg,var(--navy),var(--navy-light)); display: flex; align-items: center; justify-content: center; color: var(--gold); flex-shrink: 0; }
+.service-card__content { flex: 1; min-width: 0; }
+.service-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.07rem; font-weight: 700; color: var(--navy); margin-bottom: .3rem; }
+.service-card p { font-size: .8rem; color: var(--text-mid); line-height: 1.6; margin-bottom: .5rem; }
+.service-card__link { font-size: .76rem; font-weight: 600; color: var(--gold-dark); }
+
+/* ─── 11. POURQUOI NOUS ─── */
+.why { background: var(--navy); position: relative; overflow: hidden; }
+.why__deco { position: absolute; right: -200px; top: -200px; width: 500px; height: 500px; border-radius: 50%; border: 1px solid rgba(200,160,80,.1); pointer-events: none; }
+.why__deco::before { content: ''; position: absolute; inset: 60px; border-radius: 50%; border: 1px solid rgba(200,160,80,.07); }
+.why__inner { display: grid; grid-template-columns: 1fr; gap: 2rem; position: relative; z-index: 1; }
+.why__text .section__eyebrow { color: var(--gold); }
+.why__text .section__title { color: var(--white); text-align: left; }
+.why__text .section__title em { color: var(--gold-light); }
+.why__text > p { color: rgba(255,255,255,.65); margin-bottom: 1.4rem; font-size: .86rem; line-height: 1.75; }
+.why__cards { display: grid; grid-template-columns: 1fr; gap: .75rem; }
+.why-card { display: flex; align-items: flex-start; gap: .9rem; padding: 1rem; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,.07); background: rgba(255,255,255,.04); transition: var(--transition); }
+.why-card:active { background: rgba(255,255,255,.08); border-color: rgba(200,160,80,.25); }
+.why-card__num { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--gold); opacity: .5; line-height: 1; flex-shrink: 0; width: 30px; }
+.why-card h4 { font-size: .88rem; font-weight: 600; color: var(--white); margin-bottom: .22rem; }
+.why-card p  { font-size: .78rem; color: rgba(255,255,255,.52); line-height: 1.58; }
+
+/* ─── 12. TÉMOIGNAGES ─── */
+.testimonials { background: var(--cream); }
+.testi-track-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0 -1rem; padding: 0 1rem .5rem; }
+.testi-track-wrap::-webkit-scrollbar { display: none; }
+.testi-grid { display: flex; gap: .9rem; width: max-content; }
+.testi-card { background: var(--white); border-radius: var(--radius-md); padding: 1.3rem; box-shadow: var(--shadow-sm); position: relative; width: 78vw; max-width: 290px; flex-shrink: 0; scroll-snap-align: start; }
+.testi-card::before { content: '\201C'; position: absolute; top: .7rem; right: 1rem; font-family: 'Cormorant Garamond', serif; font-size: 4rem; color: var(--gold); opacity: .12; line-height: 1; }
+.testi-dots { display: flex; justify-content: center; gap: .4rem; margin-top: 1rem; }
+.testi-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cream-mid); transition: var(--transition); cursor: pointer; border: none; padding: 0; }
+.testi-dot.active { background: var(--gold); width: 18px; border-radius: 3px; }
+.testi-card__stars { color: var(--gold); font-size: .87rem; letter-spacing: .07em; margin-bottom: .75rem; }
+.testi-card__text { font-size: .82rem; color: var(--text-mid); line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+.testi-card__author { display: flex; align-items: center; gap: .7rem; }
+.testi-card__avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--navy); color: var(--white); font-size: .75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.testi-card__author strong { display: block; font-size: .84rem; color: var(--navy); }
+.testi-card__author span  { font-size: .72rem; color: var(--text-light); }
+
+/* ─── 13. CONTACT ─── */
+.contact { background: var(--white); }
+.contact__inner { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+.contact__info-card { background: var(--navy); border-radius: var(--radius-md); padding: 1.5rem; }
+.contact__info-card .section__eyebrow { color: var(--gold); }
+.contact__info-card .section__title { color: var(--white); text-align: left; font-size: clamp(1.45rem, 6vw, 2.2rem); margin-bottom: .55rem; }
+.contact__info-card > p { color: rgba(255,255,255,.65); font-size: .83rem; line-height: 1.7; margin-bottom: 1.1rem; }
+.contact__list { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1.1rem; }
+.contact__list li { display: flex; align-items: flex-start; gap: .6rem; font-size: .81rem; color: rgba(255,255,255,.68); }
+.contact__list svg { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+.contact__form { display: flex; flex-direction: column; gap: .9rem; background: var(--cream); border-radius: var(--radius-md); padding: 1.35rem; }
+.form-group { display: flex; flex-direction: column; gap: .32rem; }
+.form-group label { font-size: .76rem; font-weight: 600; color: var(--navy); letter-spacing: .02em; }
+.form-group label span { color: var(--gold-dark); }
+.form-group input, .form-group textarea { padding: .78rem .95rem; border: 1.5px solid var(--cream-mid); border-radius: var(--radius-sm); font-family: 'Jost', sans-serif; font-size: 1rem; color: var(--text); background: var(--white); transition: border-color var(--transition), box-shadow var(--transition); resize: vertical; -webkit-appearance: none; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,160,80,.15); }
+.form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-light); }
+.form-group input.error, .form-group textarea.error { border-color: #e53e3e; background: #fff8f8; }
+.form__success { display: none; text-align: center; color: #2d6a4f; background: #d8f3dc; border-radius: var(--radius-sm); padding: .8rem; font-size: .82rem; font-weight: 600; }
+.form__success.show { display: block; }
+
+/* ─── 14. FOOTER ─── */
+.footer { background: var(--navy); color: rgba(255,255,255,.62); }
+.footer__top { display: grid; grid-template-columns: 1fr; gap: 1.75rem; padding-top: 2.25rem; padding-bottom: 1.75rem; border-bottom: 1px solid rgba(255,255,255,.07); }
+.footer__brand p { font-size: .81rem; line-height: 1.7; margin-top: .65rem; margin-bottom: 1rem; }
+.footer__social { display: flex; gap: .55rem; flex-wrap: wrap; }
+.social-link { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(255,255,255,.15); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.58); transition: var(--transition); }
+.social-link:active { background: var(--gold); color: var(--navy); }
+.footer__links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem .75rem; }
+.footer__links h4 { font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--white); margin-bottom: .65rem; }
+.footer__links ul { display: flex; flex-direction: column; gap: .45rem; }
+.footer__links a { font-size: .8rem; color: rgba(255,255,255,.48); transition: color var(--transition); }
+.footer__links a:active { color: var(--gold-light); }
+.footer__bottom { display: flex; flex-direction: column; align-items: center; gap: .3rem; padding: 1.1rem 0; font-size: .73rem; color: rgba(255,255,255,.28); text-align: center; }
+
+/* ─── 15. MODAL – BOTTOM SHEET ─── */
+.modal { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: flex-end; justify-content: center; pointer-events: none; opacity: 0; transition: opacity .25s ease; }
+.modal.open { pointer-events: auto; opacity: 1; }
+.modal__backdrop { position: absolute; inset: 0; background: rgba(11,29,53,.6); backdrop-filter: blur(4px); cursor: pointer; }
+.modal__box { position: relative; z-index: 1; background: var(--white); border-radius: var(--radius-lg) var(--radius-lg) 0 0; width: 100%; max-width: 520px; max-height: 88vh; overflow-y: auto; -webkit-overflow-scrolling: touch; transform: translateY(100%); transition: transform .36s cubic-bezier(.32,0,.2,1); padding-top: .5rem; }
+.modal.open .modal__box { transform: translateY(0); }
+.modal__handle { width: 36px; height: 4px; background: var(--cream-mid); border-radius: 2px; margin: 0 auto .5rem; }
+.modal__close { position: absolute; top: .7rem; right: .7rem; width: 32px; height: 32px; border-radius: 50%; background: var(--cream); color: var(--text); font-size: .88rem; display: flex; align-items: center; justify-content: center; z-index: 2; }
+.modal__img { height: 195px; background-size: cover; background-position: center; }
+.modal__body { padding: 1.15rem; }
+.modal__body h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--navy); margin: .4rem 0 .2rem; line-height: 1.22; }
+.modal__location { font-size: .76rem; color: var(--text-light); margin-bottom: .7rem; }
+.modal__body > p { font-size: .83rem; color: var(--text-mid); line-height: 1.65; margin-bottom: .85rem; }
+.modal__features { display: grid; grid-template-columns: 1fr 1fr; gap: .38rem .45rem; margin-bottom: .9rem; }
+.modal__features li { display: flex; align-items: flex-start; gap: .32rem; font-size: .78rem; color: var(--text-mid); line-height: 1.38; }
+.modal__features li::before { content: '✓'; color: var(--gold-dark); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.modal__price { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 700; color: var(--navy); margin-bottom: .9rem; }
+.modal__price span { font-size: .78rem; font-weight: 400; color: var(--text-light); }
+
+/* ─── 16. FAB WHATSAPP ─── */
+.fab-whatsapp { position: fixed; bottom: 1.1rem; right: 1.1rem; z-index: 900; width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg,var(--green-wa),var(--green-wa-d)); color: var(--white); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 18px rgba(37,211,102,.4); transition: transform var(--transition); }
+.fab-whatsapp:active { transform: scale(.9); }
+.fab-whatsapp__pulse { position: absolute; inset: -5px; border-radius: 50%; border: 2px solid var(--green-wa); animation: pulse 2.2s infinite; }
+@keyframes pulse { 0% { transform:scale(1); opacity:.65; } 100% { transform:scale(1.65); opacity:0; } }
+
+/* ═══════════════════════════════════
+   BREAKPOINTS MOBILE → DESKTOP
+   ═══════════════════════════════════ */
+
+/* ── TABLETTE PETITE ≥ 480px ── */
+@media (min-width: 480px) {
+  .hero__ctas { flex-direction: row; flex-wrap: wrap; }
+  .hero__ctas .btn { width: auto; flex: 1; min-width: 160px; }
+  .cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .why__cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── TABLETTE ≥ 600px ── */
+@media (min-width: 600px) {
+  :root { --header-h: 64px; }
+  html  { font-size: 15.5px; }
+  .container { padding: 0 1.25rem; }
+  .section { padding: 4rem 0; }
+  .section__head { margin-bottom: 2.25rem; }
+
+  .hero__ctas .btn { font-size: .93rem; }
+  .stat__num { font-size: 1.8rem; }
+
+  .services__grid { grid-template-columns: repeat(2, 1fr); }
+  .service-card { flex-direction: column; gap: .7rem; }
+
+  /* Témoignages : grille à partir de 600px */
+  .testi-track-wrap { overflow-x: visible; margin: 0; padding: 0; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; width: auto; }
+  .testi-card { width: auto; max-width: none; }
+  .testi-dots { display: none; }
+
+  .contact__inner { grid-template-columns: 1fr 1fr; align-items: start; }
+  .modal__features { grid-template-columns: 1fr 1fr; }
+  .header__wa-text { display: inline; }
+}
+
+/* ── TABLETTE LARGE ≥ 768px ── */
+@media (min-width: 768px) {
+  :root { --header-h: 68px; }
+  html  { font-size: 16px; }
+  .container { padding: 0 1.5rem; }
+  .section { padding: 5rem 0; }
+
+  .hero__content { padding: 3.5rem 1.5rem 4rem; }
+  .hero__ctas { flex-wrap: nowrap; }
+  .hero__ctas .btn { flex: none; width: auto; }
+  .stat__num { font-size: 2rem; }
+  .stat__sep { height: 38px; }
+
+  .cards-grid { gap: 1.25rem; }
+  .why__inner { grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .footer__top { grid-template-columns: 1.5fr 1fr 1fr; }
+  .footer__links-grid { display: contents; }
+  .footer__bottom { flex-direction: row; }
+
+  .modal { align-items: center; padding: 1.5rem; }
+  .modal__box { border-radius: var(--radius-lg); transform: translateY(16px) scale(.96); max-height: 86vh; }
+  .modal.open .modal__box { transform: translateY(0) scale(1); }
+  .modal__handle { display: none; }
+  .modal__img { height: 220px; }
+}
+
+/* ── DESKTOP ≥ 960px ── */
+@media (min-width: 960px) {
+  :root { --header-h: 72px; }
+
+  /* Nav desktop */
+  .nav    { display: block !important; }
+  .burger { display: none !important; }
+  .header { background: transparent; }
+  .header.scrolled { background: rgba(11,29,53,.97); }
+
+  .hero__content { padding: 4rem 1.5rem; }
+  .hero__title { font-size: clamp(3rem, 5vw, 4.5rem); }
+  .hero__sub { font-size: 1.05rem; }
+
+  /* 3 colonnes */
+  .cards-grid { grid-template-columns: repeat(3, 1fr); }
+  .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .card:hover .card__img { transform: scale(1.06); }
+  .card__overlay { pointer-events: auto; }
+  .card:hover .card__overlay { opacity: 1; }
+
+  /* 4 colonnes services */
+  .services__grid { grid-template-columns: repeat(4, 1fr); }
+  .service-card:hover { border-color: transparent; box-shadow: var(--shadow-md); transform: translateY(-4px); }
+  .service-card:hover::after { transform: scaleY(1); }
+
+  .why-card:hover { background: rgba(255,255,255,.08); border-color: rgba(200,160,80,.3); transform: translateX(4px); }
+
+  .contact__inner { grid-template-columns: 1fr 1.15fr; }
+
+  /* Footer 4 cols */
+  .footer__top { grid-template-columns: 2fr 1fr 1fr 1fr; }
+  .social-link:hover { background: var(--gold); border-color: var(--gold); color: var(--navy); transform: translateY(-3px); }
+  .footer__links a:hover { color: var(--gold-light); }
+
+  /* Hover desktop */
+  .btn--gold:hover     { box-shadow: 0 6px 28px rgba(200,160,80,.52); transform: translateY(-2px); }
+  .btn--whatsapp:hover { box-shadow: 0 6px 28px rgba(37,211,102,.48); transform: translateY(-2px); }
+  .btn--ghost:hover    { background: var(--cream); border-color: var(--gold); color: var(--gold-dark); }
+  .btn--outline:hover  { background: rgba(255,255,255,.1); border-color: var(--white); }
+
+  /* FAB plus grand */
+  .fab-whatsapp { width: 58px; height: 58px; bottom: 1.5rem; right: 1.5rem; }
+  .fab-whatsapp:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.55); }
+}
+
+/* ── TRÈS PETITS ÉCRANS ≤ 360px ── */
+@media (max-width: 360px) {
+  html { font-size: 13.5px; }
+  .hero__title { font-size: 1.9rem; }
+  .hero__stats { gap: .7rem; }
+  .stat__num { font-size: 1.3rem; }
+  .modal__features { grid-template-columns: 1fr; }
+  .card__name { font-size: 1rem; }
+  .section__title { font-size: 1.55rem; }
+}
+
+/* ── ACCESSIBILITÉ ── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; opacity: 1; transform: none; }
+  .fab-whatsapp__pulse { animation: none; }
+  .hero__scroll span   { animation: none; }
+  * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header" id="header">
+  <div class="header__inner">
+    <a href="#accueil" class="logo">
+      <span class="logo__icon">◈</span>
+      <span class="logo__text">Résid<span class="logo__accent">'</span>Or</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <ul class="nav__list">
+        <li><a href="#accueil"    class="nav__link" data-section="accueil">Accueil</a></li>
+        <li><a href="#residences" class="nav__link" data-section="residences">Résidences</a></li>
+        <li><a href="#services"   class="nav__link" data-section="services">Services</a></li>
+        <li><a href="#apropos"    class="nav__link" data-section="apropos">À propos</a></li>
+        <li><a href="#contact"    class="nav__link" data-section="contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header__actions">
+      <a href="https://wa.me/2250713823957" target="_blank" rel="noopener" class="btn btn--whatsapp btn--sm" aria-label="WhatsApp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9 9 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.054 23.25a.75.75 0 0 0 .927.927l5.395-1.478A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.953 9.953 0 0 1-5.307-1.453l-.38-.228-3.942 1.079 1.08-3.942-.228-.38A9.961 9.961 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        <span class="header__wa-text">WhatsApp</span>
+      </a>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-overlay">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== NAV OVERLAY MOBILE ===== -->
+<div class="nav-overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="Menu de navigation">
+  <nav>
+    <ul class="nav__list">
+      <li><a href="#accueil"    class="nav__link">Accueil</a></li>
+      <li><a href="#residences" class="nav__link">Résidences</a></li>
+      <li><a href="#services"   class="nav__link">Services</a></li>
+      <li><a href="#apropos"    class="nav__link">À propos</a></li>
+      <li><a href="#contact"    class="nav__link">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="nav-overlay__line"></div>
+  <a href="https://wa.me/2250700000000" target="_blank" rel="noopener" class="btn btn--whatsapp nav-overlay__wa">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9 9 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.054 23.25a.75.75 0 0 0 .927.927l5.395-1.478A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.953 9.953 0 0 1-5.307-1.453l-.38-.228-3.942 1.079 1.08-3.942-.228-.38A9.961 9.961 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg> Écrire sur WhatsApp
+  </a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="accueil">
+  <div class="hero__bg">
+    <div class="hero__overlay"></div>
+    <div class="hero__shapes">
+      <div class="shape shape--1"></div>
+      <div class="shape shape--2"></div>
+      <div class="shape shape--3"></div>
+    </div>
+  </div>
+  <div class="hero__content container">
+    <p class="hero__eyebrow reveal">Agence Immobilière Premium — Abidjan</p>
+    <h1 class="hero__title reveal reveal--delay-1">Trouvez votre<br/><em>résidence idéale</em><br/>à Abidjan</h1>
+    <p class="hero__sub reveal reveal--delay-2">Des logements meublés haut de gamme dans les quartiers les plus prisés de la capitale ivoirienne. Location courte et longue durée.</p>
+    <div class="hero__ctas reveal reveal--delay-3">
+      <a href="#residences" class="btn btn--gold">Voir les résidences</a>
+      <a href="https://wa.me/2250700000000" target="_blank" rel="noopener" class="btn btn--outline">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9 9 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.054 23.25a.75.75 0 0 0 .927.927l5.395-1.478A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.953 9.953 0 0 1-5.307-1.453l-.38-.228-3.942 1.079 1.08-3.942-.228-.38A9.961 9.961 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg> Nous contacter
+      </a>
+    </div>
+    <div class="hero__stats reveal reveal--delay-4">
+      <div class="stat"><span class="stat__num">200+</span><span class="stat__label">Résidences</span></div>
+      <div class="stat__sep"></div>
+      <div class="stat"><span class="stat__num">8</span><span class="stat__label">Quartiers</span></div>
+      <div class="stat__sep"></div>
+      <div class="stat"><span class="stat__num">98%</span><span class="stat__label">Satisfaction</span></div>
+    </div>
+  </div>
+  <a href="#residences" class="hero__scroll" aria-label="Défiler vers les résidences"><span></span></a>
+</section>
+
+<!-- ===== RÉSIDENCES ===== -->
+<section class="section residences" id="residences">
+  <div class="container">
+    <div class="section__head reveal">
+      <p class="section__eyebrow">Notre Catalogue</p>
+      <h2 class="section__title">Nos Résidences</h2>
+      <p class="section__sub">Des espaces soigneusement sélectionnés pour votre confort et votre style de vie.</p>
+    </div>
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">Tous</button>
+      <button class="filter-btn" data-filter="meuble">Meublé</button>
+      <button class="filter-btn" data-filter="longue">Longue durée</button>
+      <button class="filter-btn" data-filter="premium">Premium</button>
+    </div>
+    <div class="cards-grid" id="cards-grid">
+      <article class="card reveal" data-tags="meuble premium">
+        <div class="card__img-wrap">
+          <div class="card__img" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80')"></div>
+          <span class="card__badge ">Premium</span>
+          <div class="card__overlay"><button class="btn btn--white btn--sm" onclick="openModal(0)">Réserver</button></div>
+        </div>
+        <div class="card__body">
+          <div class="card__location"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cocody, Riviera 3</div>
+          <h3 class="card__name">Villa Élégance Riviera</h3>
+          <p class="card__desc">Villa 4 pièces meublée, piscine, sécurité 24h/24, parking gardé.</p>
+          <div class="card__footer">
+            <div class="card__price"><span class="price__amount">450 000</span><span class="price__unit">FCFA / mois</span></div>
+            <div class="card__btns">
+              <button class="btn btn--ghost btn--sm" onclick="openModal(0)">Détails</button>
+              <a href="https://wa.me/2250713823957" target="_blank" rel="noopener" class="btn btn--whatsapp btn--sm" aria-label="WhatsApp"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9 9 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.054 23.25a.75.75 0 0 0 .927.927l5.395-1.478A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.953 9.953 0 0 1-5.307-1.453l-.38-.228-3.942 1.079 1.08-3.942-.228-.38A9.961 9.961 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="card reveal" data-tags="meuble">
+        <div class="card__img-wrap">
+          <div class="card__img" style="background-image:url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80')"></div>
+          <span class="card__badge card__badge--blue">Disponible</span>
+          <div class="card__overlay"><button class="btn btn--white btn--sm" onclick="openModal(1)">Réserver</button></div>
+        </div>
+        <div class="card__body">
+          <div class="card__location"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Marcory, Zone 4</div>
+          <h3 class="card__name">Appartement Zone 4</h3>
+          <p class="card__desc">F3 moderne climatisé, cuisine équipée, balcon vue jardin.</p>
+          <div class="card__footer">
+            <div class="card__price"><span class="price__amount">180 000</span><span class="price__unit">FCFA / mois</span></div>
+            <div class="card__btns">
+              <button class="btn btn--ghost btn--sm" onclick="openModal(1)">Détails</button>
+              <a href="https://wa.me/2250713823957" target="_blank" rel="noopener" class="btn btn--whatsapp btn--sm" aria-label="WhatsApp"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9 9 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.054 23.25a.75.75 0 0 0 .927.927l5.395-1.478A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.953 9.953 0 0 1-5.307-1.453l-.38-.228-3.942 1.079 1.08-3.942-.228-.38A9.961 9.961 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="card reveal" data-tags="longue premium">
+        <div class="card__img-wrap">
+          <div class="card__img" style="background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80')"></div>
+          <span class="card__badge ">Premium</span>
+          <div class="card__overlay"><button class="btn btn--white btn--sm" onclick="openModal(2)">Réserver</button></div>
+        </div>
+        <div class="card__body">
+          <div class="card__location"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Plateau, Centre Affaires</div>
+          <h3 class="card__name">Duplex Le Plateau</h3>
+          <p class="card__desc">Duplex haut standing, vue panoramique, bureau intégré, sécurité.</p>
+          <div class="card__footer">
+            <div class="card__price"><span class="price__amount">620 000</span><span class="price__unit">FCFA / mois</span></div>
+            <div class="card__btns">
+              <button class="btn btn--ghost btn--sm" onclick="openModal(2)">Détails</button>
+              <a href="https://wa.me/2250713823957" target="_blank" rel="noopener" class="btn btn--whatsapp btn--sm" aria-label="WhatsApp"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9 9 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.054 23.25a.75.75 0 0 0 .927.927l5.395-1.478A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.953 9.953 0 0 1-5.307-1.453l-.38-.228-3.942 1.079 1.08-3.942-.228-.38A9.961 9.961 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="card reveal" data-tags="meuble longue">
+        <div class="card__img-wrap">
+          <div class="card__img" style="background-image:url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80')"></div>
+          <span class="card__badge card__badge--blue">Disponible</span>
+          <div class="card__overlay"><button class="btn btn--white btn--sm" onclick="openModal(3)">Réserver</button></div>
+        </div>
+        <div class="card__body">
+          <div class="card__location"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Yopougon, Selmer</div>
+          <h3 class="card__name">Studio Confort Yopougon</h3>
+          <p class="card__desc">Studio meublé tout équipé, calme, sécurisé, idéal pour professionnel.</p>
+          <div class="card__footer">
+            <div class="card__price"><span class="price__amount">85 000</span><span class="price__unit">FCFA / mois</span></div>
+            <div class="card__btns">
+              <button class="btn btn--ghost btn--sm" onclick="openModal(3)">Détails</button>
+              <a href="https://wa.me/2250713823957" target="_blank" rel="noopener" class="btn btn--whatsapp btn--sm" aria-label="WhatsApp"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9 9 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.054 23.25a.75.75 0 0 0 .927.927l5.395-1.478A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.953 9.953 0 0 1-5.307-1.453l-.38-.228-3.942 1.079 1.08-3.942-.228-.38A9.961 9.961 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="card reveal" data-tags="premium longue">
+        <div class="card__img-wrap">
+          <div class="card__img" style="background-image:url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80')"></div>
+          <span class="card__badge ">Premium</span>
+          <div class="card__overlay"><button class="btn btn--white btn--sm" onclick="openModal(4)">Réserver</button></div>
+        </div>
+        <div class="card__body">
+          <div class="card__location"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cocody, Deux Plateaux</div>
+          <h3 class="card__name">Résidence Les Deux Plateaux</h3>
+          <p class="card__desc">Appartement standing, 3 chambres, terrasse, gardiennage.</p>
+          <div class="card__footer">
+            <div class="card__price"><span class="price__amount">320 000</span><span class="price__unit">FCFA / mois</span></div>
+            <div class="card__btns">
+              <button class="btn btn--ghost btn--sm" onclick="openModal(4)">Détails</button>
+              <a href="https://wa.me/2250713823957" target="_blank" rel="noopener" class="btn btn--whatsapp btn--sm" aria-label="WhatsApp"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9 9 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.054 23.25a.75.75 0 0 0 .927.927l5.395-1.478A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.953 9.953 0 0 1-5.307-1.453l-.38-.228-3.942 1.079 1.08-3.942-.228-.38A9.961 9.961 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="card reveal" data-tags="meuble">
+        <div class="card__img-wrap">
+          <div class="card__img" style="background-image:url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80')"></div>
+          <span class="card__badge card__badge--blue">Disponible</span>
+          <div class="card__overlay"><button class="btn btn--white btn--sm" onclick="openModal(5)">Réserver</button></div>
+        </div>
+        <div class="card__body">
+          <div class="card__location"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Koumassi, Grand Carrefour</div>
+          <h3 class="card__name">Maison Familiale Koumassi</h3>
+          <p class="card__desc">Grande maison 5 pièces avec cour, quartier calme et résidentiel.</p>
+          <div class="card__footer">
+            <div class="card__price"><span class="price__amount">150 000</span><span class="price__unit">FCFA / mois</span></div>
+            <div class="card__btns">
+              <button class="btn btn--ghost btn--sm" onclick="openModal(5)">Détails</button>
+              <a href="https://wa.me/2250713823957" target="_blank" rel="noopener" class="btn btn--whatsapp btn--sm" aria-label="WhatsApp"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9 9 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.054 23.25a.75.75 0 0 0 .927.927l5.395-1.478A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.953 9.953 0 0 1-5.307-1.453l-.38-.228-3.942 1.079 1.08-3.942-.228-.38A9.961 9.961 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div class="section__cta reveal">
+      <a href="https://wa.me/2250713823957?text=Bonjour%2C+je+cherche+une+r%C3%A9sidence+%C3%A0+Abidjan" target="_blank" rel="noopener" class="btn btn--gold">Voir toutes nos résidences</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="section services" id="services">
+  <div class="container">
+    <div class="section__head reveal">
+      <p class="section__eyebrow">Ce que nous offrons</p>
+      <h2 class="section__title">Nos Services</h2>
+      <p class="section__sub">Une offre complète pour tous vos besoins en logement à Abidjan.</p>
+    </div>
+    <div class="services__grid">
+      <div class="service-card reveal">
+        <div class="service-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="service-card__content">
+          <h3>Location Meublée</h3>
+          <p>Résidences entièrement équipées, prêtes à vivre dès votre arrivée. Linge, cuisine, wifi inclus.</p>
+          <a href="#contact" class="service-card__link">En savoir plus →</a>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div class="service-card__content">
+          <h3>Location Longue Durée</h3>
+          <p>Bail annuel avec accompagnement complet. Réductions exclusives pour 6 mois et plus.</p>
+          <a href="#contact" class="service-card__link">En savoir plus →</a>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="service-card__content">
+          <h3>Gestion Immobilière</h3>
+          <p>Confiez-nous votre bien. Locataires, entretien, loyers et états des lieux entièrement gérés.</p>
+          <a href="#contact" class="service-card__link">En savoir plus →</a>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="service-card__content">
+          <h3>Recherche Personnalisée</h3>
+          <p>Critères précis ? Nous trouvons la résidence qui vous correspond parfaitement.</p>
+          <a href="#contact" class="service-card__link">En savoir plus →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== POURQUOI NOUS ===== -->
+<section class="section why" id="apropos">
+  <div class="why__deco"></div>
+  <div class="container why__inner">
+    <div class="why__text reveal">
+      <p class="section__eyebrow">À propos</p>
+      <h2 class="section__title why__title">Pourquoi choisir<br/><em>Résid'Or ?</em></h2>
+      <p>Depuis 2015, Résid'Or est la référence de la location premium à Abidjan. Qualité, transparence et satisfaction totale de nos clients.</p>
+      <a href="https://wa.me/2250713823957" target="_blank" rel="noopener" class="btn btn--gold">Nous contacter</a>
+    </div>
+    <div class="why__cards">
+      <div class="why-card reveal"><span class="why-card__num">01</span><div><h4>Résidences Vérifiées</h4><p>Chaque bien est inspecté et certifié avant publication. Zéro mauvaise surprise.</p></div></div>
+      <div class="why-card reveal"><span class="why-card__num">02</span><div><h4>Assistance Rapide</h4><p>Réponse en moins de 2h, 7j/7 via WhatsApp. Équipe disponible pour vous.</p></div></div>
+      <div class="why-card reveal"><span class="why-card__num">03</span><div><h4>Meilleurs Prix</h4><p>Tarifs compétitifs garantis, alignés sur tout devis concurrent équivalent.</p></div></div>
+      <div class="why-card reveal"><span class="why-card__num">04</span><div><h4>Disponibilité 24/7</h4><p>Permanence téléphonique non-stop, même à 3h du matin en cas d'urgence.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TÉMOIGNAGES ===== -->
+<section class="section testimonials">
+  <div class="container">
+    <div class="section__head reveal">
+      <p class="section__eyebrow">Ils nous font confiance</p>
+      <h2 class="section__title">Témoignages</h2>
+    </div>
+    <div class="testi-track-wrap" id="testi-wrap">
+      <div class="testi-grid" id="testi-grid">
+        <div class="testi-card">
+          <div class="testi-card__stars">★★★★★</div>
+          <p class="testi-card__text">« Résid'Or m'a trouvé un appartement en 48h correspondant exactement à mes critères. Service impeccable, je recommande vivement ! »</p>
+          <div class="testi-card__author">
+            <div class="testi-card__avatar">KD</div>
+            <div><strong>Kouamé Didier</strong><span>Cadre, Cocody</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-card__stars">★★★★★</div>
+          <p class="testi-card__text">« Excellente expérience. L'appartement était exactement comme décrit, propre et bien situé. L'équipe est très réactive sur WhatsApp. »</p>
+          <div class="testi-card__author">
+            <div class="testi-card__avatar" style="background:var(--gold)">AF</div>
+            <div><strong>Aminata Fall</strong><span>Entrepreneuse, Plateau</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-card__stars">★★★★★</div>
+          <p class="testi-card__text">« J'ai confié la gestion de ma maison à Résid'Or. Paiements à l'heure, rapport mensuel, aucun souci depuis 2 ans. Fiabilité totale. »</p>
+          <div class="testi-card__author">
+            <div class="testi-card__avatar" style="background:#2d6a4f">OT</div>
+            <div><strong>Oumar Touré</strong><span>Propriétaire, Marcory</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-dots" id="testi-dots">
+      <button class="testi-dot active" data-index="0" aria-label="Témoignage 1"></button>
+      <button class="testi-dot" data-index="1" aria-label="Témoignage 2"></button>
+      <button class="testi-dot" data-index="2" aria-label="Témoignage 3"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section contact" id="contact">
+  <div class="container contact__inner">
+    <div class="contact__info-card reveal">
+      <p class="section__eyebrow">Nous joindre</p>
+      <h2 class="section__title">Contact</h2>
+      <p>Disponibles 7j/7 pour répondre à toutes vos questions et vous accompagner dans votre projet.</p>
+      <ul class="contact__list">
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Cocody Riviera 3, Abidjan, Côte d'Ivoire
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.5 16z"/></svg>
+          +225 07 00 00 00 00
+        </li>
+        <li>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          contact@residorabidjan.ci
+        </li>
+      </ul>
+      <a href="https://wa.me/2250713823957" target="_blank" rel="noopener" class="btn btn--whatsapp">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9 9 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.054 23.25a.75.75 0 0 0 .927.927l5.395-1.478A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.953 9.953 0 0 1-5.307-1.453l-.38-.228-3.942 1.079 1.08-3.942-.228-.38A9.961 9.961 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg> Écrire sur WhatsApp
+      </a>
+    </div>
+
+    <form class="contact__form reveal" id="contact-form" novalidate>
+      <div class="form-group">
+        <label for="nom">Nom complet <span>*</span></label>
+        <input type="text" id="nom" name="nom" placeholder="Votre nom complet" required autocomplete="name"/>
+      </div>
+      <div class="form-group">
+        <label for="tel">Téléphone <span>*</span></label>
+        <input type="tel" id="tel" name="tel" placeholder="+225 00 00 00 00 00" required autocomplete="tel"/>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="votre@email.com" autocomplete="email"/>
+      </div>
+      <div class="form-group">
+        <label for="message">Message <span>*</span></label>
+        <textarea id="message" name="message" rows="4" placeholder="Décrivez votre besoin..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn--gold btn--full">
+        <span class="btn-text">Envoyer le message</span>
+        <span class="btn-loader" aria-hidden="true"></span>
+      </button>
+      <p class="form__success" id="form-success" role="alert">✓ Message envoyé ! Nous vous recontactons rapidement.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer__top container">
+    <div class="footer__brand">
+      <a href="#accueil" class="logo">
+        <span class="logo__icon">◈</span>
+        <span class="logo__text">Résid<span class="logo__accent">'</span>Or</span>
+      </a>
+      <p>L'immobilier premium à Abidjan. Votre confort, notre priorité depuis 2015.</p>
+      <div class="footer__social">
+        <a href="#" class="social-link" aria-label="Facebook">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" class="social-link" aria-label="Instagram">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://wa.me/2250713823957" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9 9 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.054 23.25a.75.75 0 0 0 .927.927l5.395-1.478A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.953 9.953 0 0 1-5.307-1.453l-.38-.228-3.942 1.079 1.08-3.942-.228-.38A9.961 9.961 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer__links-grid">
+      <div class="footer__links">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#residences">Résidences</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Location meublée</a></li>
+          <li><a href="#services">Longue durée</a></li>
+          <li><a href="#services">Gestion immo.</a></li>
+          <li><a href="#services">Recherche perso.</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4>Quartiers</h4>
+        <ul>
+          <li><a href="#residences">Cocody</a></li>
+          <li><a href="#residences">Marcory</a></li>
+          <li><a href="#residences">Plateau</a></li>
+          <li><a href="#residences">Yopougon</a></li>
+          <li><a href="#residences">Koumassi</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom container">
+    <p>© 2025 Résid'Or Abidjan. Tous droits réservés.</p>
+    <p>Conçu avec ♥ à Abidjan</p>
+  </div>
+</footer>
+
+<!-- ===== MODAL DÉTAILS ===== -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal__backdrop" id="modal-backdrop"></div>
+  <div class="modal__box">
+    <div class="modal__handle"></div>
+    <button class="modal__close" id="modal-close" aria-label="Fermer">✕</button>
+    <div class="modal__img" id="modal-img"></div>
+    <div class="modal__body">
+      <span class="card__badge" id="modal-badge"></span>
+      <h2 id="modal-title"></h2>
+      <p class="modal__location" id="modal-location"></p>
+      <p id="modal-desc"></p>
+      <ul class="modal__features" id="modal-features"></ul>
+      <div class="modal__price" id="modal-price"></div>
+      <a href="#" id="modal-wa" target="_blank" rel="noopener" class="btn btn--whatsapp btn--full">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9 9 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.054 23.25a.75.75 0 0 0 .927.927l5.395-1.478A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.953 9.953 0 0 1-5.307-1.453l-.38-.228-3.942 1.079 1.08-3.942-.228-.38A9.961 9.961 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg> Contacter via WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FAB WHATSAPP ===== -->
+<a href="https://wa.me/2250713823957" target="_blank" rel="noopener" class="fab-whatsapp" aria-label="Contacter sur WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9 9 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.855L.054 23.25a.75.75 0 0 0 .927.927l5.395-1.478A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.953 9.953 0 0 1-5.307-1.453l-.38-.228-3.942 1.079 1.08-3.942-.228-.38A9.961 9.961 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  <span class="fab-whatsapp__pulse"></span>
+</a>
+
+<script>
+/* ============================================================
+   RÉSID'OR – script.js  (mobile-first update)
+   ============================================================ */
+'use strict';
+
+/* ── DONNÉES RÉSIDENCES ── */
+const residences = [
+  { name:'Villa Élégance Riviera', location:'Cocody, Riviera 3', badge:'Premium', badgeClass:'', price:'450 000 FCFA / mois', desc:'Villa contemporaine 4 pièces entièrement meublée dans une résidence sécurisée de Cocody. Terrasse privée, piscine, grand séjour lumineux.', features:['4 chambres climatisées','Piscine privée et jardin','Sécurité 24h/24, gardiennage','Parking couvert 2 véhicules','Cuisine équipée haut de gamme','Wifi fibre inclus'], img:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700&q=80', wa:'Bonjour, je suis intéressé par la Villa Élégance Riviera (450 000 FCFA/mois). Merci de me contacter.' },
+  { name:'Appartement Zone 4', location:'Marcory, Zone 4', badge:'Disponible', badgeClass:'card__badge--blue', price:'180 000 FCFA / mois', desc:'F3 moderne entièrement climatisé au cœur de la Zone 4. Cuisine équipée, balcon vue jardin, proche commerces et restaurants.', features:['3 pièces dont 2 chambres','Balcon vue jardin','Cuisine entièrement équipée','Parking résidentiel','Proche commerces','Immeuble sécurisé'], img:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=700&q=80', wa:'Bonjour, je suis intéressé par l\'Appartement Zone 4 (180 000 FCFA/mois).' },
+  { name:'Duplex Le Plateau', location:'Plateau, Centre Affaires', badge:'Premium', badgeClass:'', price:'620 000 FCFA / mois', desc:'Duplex haut standing au cœur du Plateau. Vue panoramique sur la lagune, bureau intégré, idéal pour cadres et expatriés.', features:['Duplex 5 pièces, 3 chambres','Vue panoramique lagune','Bureau privé intégré','2 salles de bain','Gardiennage & vidéosurveillance','Parking souterrain'], img:'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&q=80', wa:'Bonjour, je suis intéressé par le Duplex Le Plateau (620 000 FCFA/mois).' },
+  { name:'Studio Confort Yopougon', location:'Yopougon, Selmer', badge:'Disponible', badgeClass:'card__badge--blue', price:'85 000 FCFA / mois', desc:'Studio meublé tout équipé, idéal pour jeune professionnel. Calme, propre et bien sécurisé dans un quartier dynamique de Yopougon.', features:['Studio entièrement meublé','Climatisation','Douche + WC séparés','Coin cuisine équipé','Wifi inclus','Accès sécurisé'], img:'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=700&q=80', wa:'Bonjour, je suis intéressé par le Studio Confort Yopougon (85 000 FCFA/mois).' },
+  { name:'Résidence Les Deux Plateaux', location:'Cocody, Deux Plateaux', badge:'Premium', badgeClass:'', price:'320 000 FCFA / mois', desc:'Appartement grand standing avec 3 chambres, 2 salles de bain, terrasse et garage dans une résidence sécurisée, proche des ambassades.', features:['3 chambres climatisées','2 salles de bain','Terrasse spacieuse','Garage privatif','Gardiennage permanent','Proche écoles internationales'], img:'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=700&q=80', wa:'Bonjour, je suis intéressé par la Résidence Les Deux Plateaux (320 000 FCFA/mois).' },
+  { name:'Maison Familiale Koumassi', location:'Koumassi, Grand Carrefour', badge:'Disponible', badgeClass:'card__badge--blue', price:'150 000 FCFA / mois', desc:'Grande maison familiale 5 pièces avec cour intérieure dans un quartier calme de Koumassi. Idéale pour une famille cherchant espace et tranquillité.', features:['5 pièces dont 3 chambres','Grande cour intérieure','Chambre de bonne','Quartier calme','École à 200m','Double accès sécurisé'], img:'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=700&q=80', wa:'Bonjour, je suis intéressé par la Maison Familiale Koumassi (150 000 FCFA/mois).' }
+];
+
+/* ── ÉLÉMENTS DOM ── */
+const header      = document.getElementById('header');
+const burger      = document.getElementById('burger');
+const navOverlay  = document.getElementById('nav-overlay');
+const modal       = document.getElementById('modal');
+const modalClose  = document.getElementById('modal-close');
+const modalBD     = document.getElementById('modal-backdrop');
+const contactForm = document.getElementById('contact-form');
+const formSuccess = document.getElementById('form-success');
+const filterBtns  = document.querySelectorAll('.filter-btn');
+const cardsGrid   = document.getElementById('cards-grid');
+const navLinks    = document.querySelectorAll('.nav__link[data-section]');
+const sections    = document.querySelectorAll('section[id]');
+
+/* ── 1. HEADER SCROLL ── */
+function onScroll() {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* ── 2. BURGER / NAV OVERLAY ── */
+function openMenu() {
+  navOverlay.classList.add('open');
+  burger.classList.add('open');
+  burger.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  navOverlay.classList.remove('open');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+burger.addEventListener('click', () => navOverlay.classList.contains('open') ? closeMenu() : openMenu());
+
+/* Ferme au clic sur un lien overlay */
+navOverlay.querySelectorAll('.nav__link').forEach(link => link.addEventListener('click', closeMenu));
+
+/* Ferme avec Escape */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeMenu(); closeModal(); }
+});
+
+/* ── 3. SCROLL SPY ── */
+function updateActiveLink() {
+  const y = window.scrollY + 100;
+  sections.forEach(sec => {
+    if (y >= sec.offsetTop && y < sec.offsetTop + sec.offsetHeight) {
+      navLinks.forEach(l => l.classList.toggle('active', l.dataset.section === sec.id));
+    }
+  });
+}
+window.addEventListener('scroll', updateActiveLink, { passive: true });
+updateActiveLink();
+
+/* ── 4. SCROLL REVEAL ── */
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+/* ── 5. MODAL ── */
+function openModal(i) {
+  const r = residences[i]; if (!r) return;
+  document.getElementById('modal-img').style.backgroundImage     = `url('${r.img}')`;
+  document.getElementById('modal-badge').textContent              = r.badge;
+  document.getElementById('modal-badge').className                = `card__badge ${r.badgeClass}`;
+  document.getElementById('modal-title').textContent              = r.name;
+  document.getElementById('modal-location').textContent           = '📍 ' + r.location;
+  document.getElementById('modal-desc').textContent               = r.desc;
+  document.getElementById('modal-price').innerHTML                = r.price.replace(' FCFA / mois', ' <span>FCFA / mois</span>');
+  document.getElementById('modal-features').innerHTML             = r.features.map(f => `<li>${f}</li>`).join('');
+  document.getElementById('modal-wa').href                        = `https://wa.me/2250700000000?text=${encodeURIComponent(r.wa)}`;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
+modalClose.addEventListener('click', closeModal);
+modalBD.addEventListener('click', closeModal);
+window.openModal = openModal;
+
+/* ── 6. FILTRES ── */
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    cardsGrid.querySelectorAll('.card').forEach(card => {
+      const show = f === 'all' || (card.dataset.tags || '').includes(f);
+      card.classList.toggle('hidden', !show);
+      if (show) { card.classList.remove('visible'); revObs.observe(card); }
+    });
+  });
+});
+
+/* ── 7. FORMULAIRE ── */
+contactForm.addEventListener('submit', e => {
+  e.preventDefault();
+  let err = false;
+  contactForm.querySelectorAll('[required]').forEach(f => {
+    f.classList.remove('error');
+    if (!f.value.trim()) { f.classList.add('error'); err = true; }
+  });
+  if (err) return;
+  const btn = contactForm.querySelector('[type="submit"]');
+  btn.classList.add('loading'); btn.disabled = true;
+  setTimeout(() => {
+    btn.classList.remove('loading'); btn.disabled = false;
+    contactForm.reset();
+    formSuccess.classList.add('show');
+    setTimeout(() => formSuccess.classList.remove('show'), 5000);
+  }, 1500);
+});
+contactForm.querySelectorAll('input, textarea').forEach(f => f.addEventListener('input', () => f.classList.remove('error')));
+
+/* ── 8. TÉMOIGNAGES – DOTS SCROLL ── */
+const testiWrap = document.getElementById('testi-wrap');
+const testiDots = document.querySelectorAll('.testi-dot');
+
+if (testiWrap && testiDots.length) {
+  /* Scroll → met à jour les dots */
+  testiWrap.addEventListener('scroll', () => {
+    const w  = testiWrap.scrollWidth / testiDots.length;
+    const idx = Math.round(testiWrap.scrollLeft / w);
+    testiDots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  }, { passive: true });
+
+  /* Clic dot → scroll */
+  testiDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const i = parseInt(dot.dataset.index);
+      const w = testiWrap.scrollWidth / testiDots.length;
+      testiWrap.scrollTo({ left: i * w, behavior: 'smooth' });
+    });
+  });
+}
+
+/* ── 9. SMOOTH SCROLL (ancres) ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href'); if (id === '#') return;
+    const target = document.querySelector(id); if (!target) return;
+    e.preventDefault();
+    const top = target.getBoundingClientRect().top + window.scrollY - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 64);
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
+
+/* ── 10. ANIMATION COMPTEURS ── */
+function animCounter(el, end, suffix) {
+  let c = 0; const step = Math.ceil(end / 35);
+  const t = setInterval(() => { c = Math.min(c + step, end); el.textContent = c + suffix; if (c >= end) clearInterval(t); }, 28);
+}
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.querySelectorAll('.stat__num').forEach(s => {
+      const txt = s.textContent, n = parseInt(txt), sfx = txt.replace(n.toString(), '');
+      animCounter(s, n, sfx);
+    });
+  });
+}, { threshold: 0.6 }).observe(document.querySelector('.hero__stats') || document.body);
+
+</script>
+</body>
+</html>
